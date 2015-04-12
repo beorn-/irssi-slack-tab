@@ -18,6 +18,7 @@ our %IRSSI = (
 { package Irssi::Nick }
 
 my $complete_char = '@';
+my $finish = ':';
 
 sub complete_at {
     my ($cl, $win, $word, $start, $ws) = @_;
@@ -30,7 +31,7 @@ sub complete_at {
 	    unless (@$cl) {
 		push @$cl, grep { /^\Q$post/i } map { $_->{nick} } $win->{active}->nicks();
 	    }
-	    map { $_ = "$pre$complete_char$_" } @$cl;
+	    map { $_ = "$pre$complete_char$_$finish" } @$cl;
 	}
     }
 }
